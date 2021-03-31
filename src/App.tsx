@@ -1,4 +1,4 @@
-import './style/App.css'
+import './style/App.scss'
 import Header from "./Header";
 import AnimeGif from "./AnimeGif";
 

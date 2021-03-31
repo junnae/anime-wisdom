@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {AxiosResponse} from "axios";
-import './style/Anime.css'
+import './style/Anime.scss'
 
 const axios = require('axios').default;
 
