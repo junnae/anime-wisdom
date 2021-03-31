@@ -26,7 +26,7 @@ const AnimeGif: React.FC = () => {
             <p className ="advice">
                 {advice}
             </p>
-            <iframe className="gif" src={gif}/>
+            <iframe title={"anime-gif"} className="gif" src={gif}/>
         </div>
     )
 
