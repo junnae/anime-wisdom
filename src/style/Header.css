@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "Cheri Liney";
+  src: url("fonts/cheri.liney.ttf") format("truetype");
+}
+.App-header {
+  background-color: #EFD3D7;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
+.App-header h1 {
+  margin: 0;
+  font-family: "Cheri Liney", serif;
+}
+
+.Header-element {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+/*# sourceMappingURL=Header.css.map */

@@ -1,0 +1,14 @@
+@import 'mixins';
+
+.App-header {
+  @include header-footer;
+  h1{
+    margin: 0;
+    font-family: 'Cheri Liney', serif;
+  }
+}
+
+.Header-element {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}

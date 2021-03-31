@@ -1,0 +1,10 @@
+@mixin header-footer{
+  background-color:#EFD3D7;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
+
+@font-face {
+  font-family: "Cheri Liney";
+  src: url("fonts/cheri.liney.ttf") format("truetype");
+}
