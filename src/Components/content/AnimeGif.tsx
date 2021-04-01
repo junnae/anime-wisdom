@@ -13,7 +13,7 @@ const AnimeGif: React.FC = () => {
     }, [])
 
     return (
-        <iframe title={"anime-gif"} className="gif" src={gif}/>
+        <iframe title={"anime-gif"} className="gif" src={gif} frameBorder="0"/>
     )
 }
 
