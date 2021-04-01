@@ -7,12 +7,21 @@ require('dotenv').config()
 app.use(express.static(path.join(__dirname, 'build')));
 
 let gifCache = []
+let timerGif = Date.UTC(1970,1,1);
+let currentGif = null;
 let quoteCache = []
 
+function randomIntFromInterval(min, max) { // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 app.get('/animegif', function (req, res) {
-    let randomNumber = Math.random() * 10;
-    if(randomNumber < gifCache.length && randomNumber < 5){
-        return res.send(gifCache[randomNumber.toFixed(0)])
+    if(currentGif != null && Date.now() < timerGif ) return res.send(currentGif)
+    if(gifCache.length > 0 && randomIntFromInterval(1,10) %2 === 0){
+        let cachedGif = gifCache[randomIntFromInterval(0, gifCache.length - 1)];
+        currentGif = cachedGif;
+        timerGif = new Date(Date.now() + 10000)
+        return res.send(cachedGif)
     }
 
     axios.get('https://api.giphy.com/v1/gifs/random', {
@@ -24,18 +33,21 @@ app.get('/animegif', function (req, res) {
     }).then((response) => {
         const url = response.data["data"]["embed_url"];
         gifCache.push(url);
+        if(gifCache.length > 100) gifCache.shift()
+        currentGif = url;
+        timerGif = new Date(Date.now() + 10000)
         return res.send(url);
         }
     )
 });
 
 app.get('/advice', function(req, res) {
-    let randomNumber = Math.random() * 100;
-    if(randomNumber < quoteCache.length && randomNumber < 50){
-        return res.send(quoteCache[randomNumber.toFixed(0)])
+    if(quoteCache.length > 0 && randomIntFromInterval(1,10) %2 === 0){
+        return res.send(quoteCache[randomIntFromInterval(0, quoteCache.length - 1)])
     }
     axios.get('https://api.adviceslip.com/advice').then((response) => {
         let quote = response.data["slip"]["advice"];
+        if(quoteCache.length > 100) quoteCache.shift()
         quoteCache.push(quote)
         return res.send(quote)
         }
