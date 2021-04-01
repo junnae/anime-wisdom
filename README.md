@@ -1,1 +1,1 @@
-https://anime-wisdom.azurewebsites.net/
+https://advice.moe
