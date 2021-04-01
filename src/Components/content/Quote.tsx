@@ -14,7 +14,7 @@ const Quote: React.FC = () => {
         axios.get('https://api.adviceslip.com/advice').then((response: AxiosResponse) => {
                 if (response.data["slip"]["advice"] === advice) {
                     setLoading(true)
-                    wait(500).then(() =>
+                    wait(1000).then(() =>
                         updateQuote())
                 } else {
                     setLoading(false)
