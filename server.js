@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const axios = require("axios");
 const app = express();
+require('dotenv').config()
+
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/animegif', function (req, res) {
