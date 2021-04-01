@@ -6,7 +6,14 @@ require('dotenv').config()
 
 app.use(express.static(path.join(__dirname, 'build')));
 
+let cache = []
+
 app.get('/animegif', function (req, res) {
+    let randomNumber = Math.random() * 10;
+    if(randomNumber < cache.length && randomNumber < 5){
+        return res.send(cache[randomNumber.toFixed(0)])
+    }
+
     axios.get('https://api.giphy.com/v1/gifs/random', {
         params: {
             api_key: process.env.API_KEY,
@@ -14,11 +21,11 @@ app.get('/animegif', function (req, res) {
             tag: 'anime'
         }
     }).then((response) => {
-        return res.send(response.data["data"]["embed_url"]);
+        const url = response.data["data"]["embed_url"];
+        cache.push(url);
+        return res.send(url);
         }
-    ).catch(
     )
-    return res;
 });
 
 app.get('/', function(req, res) {
