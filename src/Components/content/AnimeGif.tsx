@@ -5,6 +5,7 @@ const AnimeGif: React.FC = () => {
     const [gif , setGif] = useState<string>('Loading..');
     useEffect(() => {
         axios.get('/animegif', {
+            timeout: 2000
         }).then((response: AxiosResponse) => {
                 setGif(response.data)
             }
