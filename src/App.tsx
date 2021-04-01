@@ -1,12 +1,12 @@
 import './style/App.scss'
-import Header from "./Header";
-import AnimeGif from "./AnimeGif";
+import Header from "./Components/Header";
+import MainContent from "./Components/content/MainContent";
 
 function App() {
     return (
         <div className="App">
         <Header/>
-        <AnimeGif/>
+        <MainContent/>
         </div>
     );
 }
