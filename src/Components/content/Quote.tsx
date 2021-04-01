@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from "react";
 import axios, {AxiosResponse} from "axios";
 
@@ -10,7 +11,6 @@ const Quote: React.FC = () => {
     }, [])
 
     function updateQuote() {
-        console.log("on click")
         axios.get('https://api.adviceslip.com/advice').then((response: AxiosResponse) => {
                 if (response.data["slip"]["advice"] === advice) {
                     setLoading(true)
