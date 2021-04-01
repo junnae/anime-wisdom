@@ -1,7 +1,8 @@
 .App {
   text-align: center;
   background-color: #FEEAFA;
-  height: calc(100vh - 3px);
+  min-height: calc(100vh - 3px);
+  max-height:100%;
   width: 100vw;
   max-width:100%;
   color: black;
