@@ -1,0 +1,12 @@
+@import 'mixins';
+
+.App-footer {
+  @include header-footer;
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background-color: transparent;
+  img{
+    float:left;
+  }
+}
