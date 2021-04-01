@@ -6,12 +6,13 @@ require('dotenv').config()
 
 app.use(express.static(path.join(__dirname, 'build')));
 
-let cache = []
+let gifCache = []
+let quoteCache = []
 
 app.get('/animegif', function (req, res) {
     let randomNumber = Math.random() * 10;
-    if(randomNumber < cache.length && randomNumber < 5){
-        return res.send(cache[randomNumber.toFixed(0)])
+    if(randomNumber < gifCache.length && randomNumber < 5){
+        return res.send(gifCache[randomNumber.toFixed(0)])
     }
 
     axios.get('https://api.giphy.com/v1/gifs/random', {
@@ -22,11 +23,25 @@ app.get('/animegif', function (req, res) {
         }
     }).then((response) => {
         const url = response.data["data"]["embed_url"];
-        cache.push(url);
+        gifCache.push(url);
         return res.send(url);
         }
     )
 });
+
+app.get('/advice', function(req, res) {
+    let randomNumber = Math.random() * 100;
+    if(randomNumber < quoteCache.length && randomNumber < 50){
+        return res.send(quoteCache[randomNumber.toFixed(0)])
+    }
+    axios.get('https://api.adviceslip.com/advice').then((response) => {
+        let quote = response.data["slip"]["advice"];
+        quoteCache.push(quote)
+        return res.send(quote)
+        }
+    )
+});
+
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));

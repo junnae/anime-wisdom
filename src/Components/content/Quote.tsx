@@ -11,14 +11,14 @@ const Quote: React.FC = () => {
     }, [])
 
     function updateQuote() {
-        axios.get('https://api.adviceslip.com/advice').then((response: AxiosResponse) => {
-                if (response.data["slip"]["advice"] === advice) {
-                    setLoading(true)
+        setLoading(true)
+        axios.get('/advice').then((response: AxiosResponse) => {
+                if (response.data === advice) {
                     wait(1000).then(() =>
                         updateQuote())
                 } else {
                     setLoading(false)
-                    setAdvice(response.data["slip"]["advice"])
+                    setAdvice(response.data)
                 }
             }
         )
