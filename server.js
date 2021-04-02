@@ -1,14 +1,18 @@
 const express = require('express');
 const {fetchRandomAnimeGif, fetchQuote} = require("./server/Integration");
 const {Cache} = require('./server/Cache');
+const {GifCache} = require('./server/GifCache');
+
 const path = require('path');
+const {connect} = require("./server/Database");
 const app = express();
 require('dotenv').config()
 
 app.use(express.static(path.join(__dirname, 'build')));
 
-let gifCache = new Cache(100, true)
+let gifCache = new GifCache(1000, true)
 let quoteCache = new Cache()
+
 
 
 //TODO - Basic Error Handling
@@ -40,4 +44,5 @@ app.get('/ping', function (req, res) {
 
 app.listen(8080, function () {
     console.log('Server started')
+    connect()
 });
