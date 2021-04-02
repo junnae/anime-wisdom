@@ -7,7 +7,7 @@ class Cache {
     timer = new Date(1970, 1,)
     _timedElement = undefined;
 
-    constructor(maxSize = 100, useTimer = false) {
+    constructor(maxSize = 1000, useTimer = false) {
         this.maxSize = maxSize;
         this.useTimer = useTimer;
     }

@@ -17,9 +17,9 @@ function fetchRandomAnimeGif(cache, res, shouldUpdateTimedCache) {
 
 function fetchQuote(cache, res) {
     axios.get('https://api.adviceslip.com/advice').then((response) => {
-            let quote = response.data["slip"]["advice"];
-            cache.add(quote, false)
-            return res.send(quote)
+            let slip = response.data["slip"];
+            cache.add(slip, false)
+            return res.send(slip["advice"])
         }
     )
 }
