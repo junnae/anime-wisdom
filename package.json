@@ -27,9 +27,9 @@
     "fsevents": "^1.2.13"
   },
   "scripts": {
-    "start": "ts-node server.ts",
+    "start": "node server.js",
     "start-dev": "react-scripts start",
-    "build": "react-scripts build && tsc",
+    "build": "react-scripts build",
     "test": "tsc",
     "eject": "react-scripts eject",
     "watch": "sass --watch src/style:src/style"
