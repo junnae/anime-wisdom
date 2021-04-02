@@ -13,8 +13,6 @@ app.use(express.static(path.join(__dirname, 'build')));
 let gifCache = new GifCache(1000, true)
 let quoteCache = new Cache()
 
-
-
 //TODO - Basic Error Handling
 app.get('/animegif', function (req, res) {
     let queryId = req.query.id;
@@ -40,7 +38,6 @@ app.get('/', function (req, res) {
 app.get('/ping', function (req, res) {
     return res.send('pong');
 });
-
 
 app.listen(8080, function () {
     console.log('Server started')
