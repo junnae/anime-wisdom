@@ -28,6 +28,8 @@
 .gif{
   width:80%;
   min-height:40vh;
-  pointer-events: none;
   align-self: center;
+  iframe{
+    pointer-events: none;
+  }
 }

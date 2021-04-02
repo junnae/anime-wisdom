@@ -1,5 +1,5 @@
 {
-  "name": "iamthebest",
+  "name": "anime-wisdom",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:8080",
@@ -19,6 +19,7 @@
     "react-dom": "^17.0.2",
     "react-scripts": "^4.0.3",
     "sass": "^1.32.8",
+    "ts-node": "^9.1.1",
     "typescript": "^4.2.3",
     "web-vitals": "^1.0.1"
   },
@@ -26,10 +27,10 @@
     "fsevents": "^1.2.13"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "ts-node server.ts",
     "start-dev": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "",
+    "build": "react-scripts build && tsc",
+    "test": "tsc",
     "eject": "react-scripts eject",
     "watch": "sass --watch src/style:src/style"
   },

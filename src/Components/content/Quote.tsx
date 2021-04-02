@@ -4,7 +4,7 @@ import axios, {AxiosResponse} from "axios";
 
 const Quote: React.FC = () => {
     const [advice, setAdvice] = useState<string>('...');
-    const [loading, setLoading] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         updateQuote();
@@ -33,8 +33,6 @@ const Quote: React.FC = () => {
             {loading ? "..." : advice}
         </p>
     )
-
-
 }
 
 export default Quote
