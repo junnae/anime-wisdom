@@ -15,14 +15,14 @@ let config = {
     },
     options: {
         database: process.env.DB_NAME,
-        encrypt: false
+        encrypt: true
     }
 }
 let connection = new Connection(config)
 
 function checkGifs(id, callback) {
     let exists = false;
-    let request = new Request('SELECT COUNT(*) FROM gifs WHERE id = @id;', (err, rowCount) => {
+    let request = new Request('SELECT COUNT(*) FROM dbo.gifs WHERE id = @id;', (err, rowCount) => {
         if(err){
             callback(err);
         } else {
@@ -41,7 +41,7 @@ function checkGifs(id, callback) {
 
 function getRandomGif(callback) {
     let result = undefined;
-    let request = new Request('SELECT TOP 1  id FROM gifs ORDER BY newid() ;', (err, rowCount) => {
+    let request = new Request('SELECT TOP 1  id FROM dbo.gifs ORDER BY newid() ;', (err, rowCount) => {
         if(err){
             callback(err);
         } else {
@@ -59,7 +59,7 @@ function getRandomGif(callback) {
 
 function numberOfGifs(callback) {
     let result = undefined;
-    let request = new Request('SELECT COUNT(*) FROM gifs', (err, rowCount) => {
+    let request = new Request('SELECT COUNT(*) FROM dbo.gifs', (err, rowCount) => {
         if(err){
             callback(err);
         } else {
@@ -77,7 +77,7 @@ function numberOfGifs(callback) {
 
 function insertGif(id, callback) {
     let ok = false;
-    let request = new Request('INSERT INTO gifs VALUES(@id);', (err, rowCount) => {
+    let request = new Request('INSERT INTO dbo.gifs VALUES(@id);', (err, rowCount) => {
         if(err){
             callback(err);
         } else {
