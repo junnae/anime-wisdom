@@ -20,13 +20,23 @@ const AnimeGif: React.FC<GifProps> = ({g}) => {
         updateGif();
     }, [])
 
+    function wait(ms: number) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     function updateGif() {
         if (g) {
-            setLoading(false)
-            setGif(g)
-            setG(gifId)
+            if(initialized) return
+            setLoading(true)
+            wait(200).then(() =>{
+                setGif(g)
+                setG(g)
+                setLoading(false)
+                setInitialized(true)
+            })
             return
         }
+        window.alert("OH NO")
         if (loading) return
         setLoading(true)
         axios.get('/animegif', {
