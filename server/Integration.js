@@ -19,7 +19,7 @@ function fetchQuote(cache, res) {
     axios.get('https://api.adviceslip.com/advice').then((response) => {
             let slip = response.data["slip"];
             cache.add(slip, false)
-            return res.send(slip["advice"])
+            return res.send(slip)
         }
     )
 }

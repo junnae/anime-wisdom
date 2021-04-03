@@ -78,8 +78,8 @@ function checkGifs(id, callback) {
 }
 
 function getRandomQuote(callback) {
-    let result = undefined;
-    let request = new Request('SELECT TOP 1  quote FROM dbo.quotes ORDER BY newid() ;', (err, rowCount) => {
+    let result = {};
+    let request = new Request('SELECT TOP 1  id, quote FROM dbo.quotes ORDER BY newid() ;', (err, rowCount) => {
         if(err){
             callback(err);
         } else {
@@ -89,7 +89,8 @@ function getRandomQuote(callback) {
 
     request.on('row', function (columns) {
         columns.forEach(function (column) {
-            result = column.value
+            if(column.metadata.colName === "id") result["id"] = column.value
+            if(column.metadata.colName === "quote") result["advice"] = column.value
         });
     })
     getConnection().execSql(request)

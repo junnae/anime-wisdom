@@ -20,7 +20,7 @@ const Quote: React.FC<QuoteProps> = ({q}) => {
         setLoading(true)
         if (q) {
             axios.get('/advice?id={q}').then((response: AxiosResponse) => {
-                setAdvice(response.data)
+                setAdvice(response.data["advice"])
                 setLoading(false)
                 setDisabled(true)
             });
@@ -31,7 +31,7 @@ const Quote: React.FC<QuoteProps> = ({q}) => {
                         updateQuote())
                 } else {
                     setLoading(false)
-                    setAdvice(response.data)
+                    setAdvice(response.data["advice"])
                 }
             }
         )

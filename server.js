@@ -31,7 +31,7 @@ app.get('/advice', function (req, res) {
         });
     }
     quoteCache.maybeGetFromCache(undefined, function (quoteFromCache) {
-        if (quoteFromCache !== undefined) return res.send(quoteFromCache)
+        if (quoteFromCache !== undefined) return res.send(JSON.stringify(quoteFromCache))
         else fetchQuote(quoteCache, res);
     });
 });
