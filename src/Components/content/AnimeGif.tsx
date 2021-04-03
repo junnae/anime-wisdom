@@ -3,6 +3,7 @@
 
 import React, {useEffect, useState} from "react";
 import axios, {AxiosResponse} from "axios";
+import {setG} from "../../App";
 
 const baseUrl = 'https://giphy.com/embed/';
 
@@ -20,9 +21,10 @@ const AnimeGif: React.FC<GifProps> = ({g}) => {
     }, [])
 
     function updateGif() {
-        if(g){
+        if (g) {
             setLoading(false)
             setGif(g)
+            setG(gifId)
             return
         }
         if (loading) return
@@ -34,6 +36,7 @@ const AnimeGif: React.FC<GifProps> = ({g}) => {
             },
         }).then((response: AxiosResponse) => {
                 setGif(response.data)
+                setG(response.data)
                 setLoading(false);
                 setInitialized(true)
             }
@@ -42,8 +45,9 @@ const AnimeGif: React.FC<GifProps> = ({g}) => {
 
     return (
         loading ? <p className={"gif"}>Loading..</p> :
-            <div className={"gif"} onClick={updateGif}><iframe title={"anime-gif"} className="gif" src={baseUrl + gifId} frameBorder="0"/></div>
+            <div className={"gif"} onClick={updateGif}>
+                <iframe title={"anime-gif"} className="gif" src={baseUrl + gifId} frameBorder="0"/>
+            </div>
     )
 }
-
 export default AnimeGif

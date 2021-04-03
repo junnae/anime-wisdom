@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from "react";
 import axios, {AxiosResponse} from "axios";
+import {setQ} from "../../App";
 
 type QuoteProps = {
     q?: string;
@@ -8,7 +9,6 @@ type QuoteProps = {
 
 const Quote: React.FC<QuoteProps> = ({q}) => {
     const [advice, setAdvice] = useState<string>('...');
-    const [id, setId] = useState<string>('...');
     const [loading, setLoading] = useState<boolean>(false);
     const [disabled, setDisabled] = useState<boolean>(false);
 
@@ -20,7 +20,7 @@ const Quote: React.FC<QuoteProps> = ({q}) => {
         if (loading || disabled) return
         setLoading(true)
         if (q) {
-            setId(q)
+            setQ(q)
             axios.get('/advice?id=' + q).then((response: AxiosResponse) => {
                 setAdvice(response.data["advice"])
                 setLoading(false)
@@ -34,7 +34,7 @@ const Quote: React.FC<QuoteProps> = ({q}) => {
                     } else {
                         setLoading(false)
                         setAdvice(response.data["advice"])
-                        setId(response.data["id"])
+                        setQ(response.data["id"])
                     }
                 }
             )
