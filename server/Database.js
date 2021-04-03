@@ -40,8 +40,8 @@ function checkQuotes(id, callback) {
 }
 
 function getQuoteById(id, callback) {
-    let quote = undefined;
-    let request = new Request('SELECT quote FROM dbo.quotes WHERE id = @id;', (err, rowCount) => {
+    let quote = { };
+    let request = new Request('SELECT id, quote FROM dbo.quotes WHERE id = @id;', (err, rowCount) => {
         if(err){
             callback(err);
         } else {
@@ -52,7 +52,8 @@ function getQuoteById(id, callback) {
     request.addParameter('id', TYPES.BigInt, id)
     request.on('row', function (columns) {
         columns.forEach(function (column) {
-            quote = column.value
+            if(column.metadata.colName === "id") quote["id"] = column.value
+            if(column.metadata.colName === "quote") quote["advice"] = column.value
         });
     })
     getConnection().execSql(request)

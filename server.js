@@ -29,11 +29,12 @@ app.get('/advice', function (req, res) {
             if (err) console.error(err)
             else if (result !== undefined) return res.send(result)
         });
+    } else {
+        quoteCache.maybeGetFromCache(undefined, function (quoteFromCache) {
+            if (quoteFromCache !== undefined) return res.send(JSON.stringify(quoteFromCache))
+            else fetchQuote(quoteCache, res);
+        });
     }
-    quoteCache.maybeGetFromCache(undefined, function (quoteFromCache) {
-        if (quoteFromCache !== undefined) return res.send(JSON.stringify(quoteFromCache))
-        else fetchQuote(quoteCache, res);
-    });
 });
 
 
