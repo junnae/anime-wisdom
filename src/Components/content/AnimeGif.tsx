@@ -36,7 +36,6 @@ const AnimeGif: React.FC<GifProps> = ({g}) => {
             })
             return
         }
-        window.alert("OH NO")
         if (loading) return
         setLoading(true)
         axios.get('/animegif', {
