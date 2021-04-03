@@ -79,7 +79,7 @@ function checkGifs(id, callback) {
 
 function getRandomQuote(callback) {
     let result = undefined;
-    let request = new Request('SELECT TOP 1  id FROM dbo.quotes ORDER BY newid() ;', (err, rowCount) => {
+    let request = new Request('SELECT TOP 1  quote FROM dbo.quotes ORDER BY newid() ;', (err, rowCount) => {
         if(err){
             callback(err);
         } else {
@@ -167,7 +167,7 @@ function insertQuote(id, quote, callback) {
 connection.on('connect', function(err) {
     console.log('Connected');
     if (err) {
-        console.log(err);
+        console.error(err);
     }
 });
 
@@ -184,14 +184,6 @@ function insertGif(id, callback) {
     request.addParameter('id', TYPES.VarChar, id)
     getConnection().execSql(request)
 }
-
-connection.on('connect', function(err) {
-    console.log('Connected');
-    if (err) {
-        console.log(err);
-    }
-});
-
 
 function connect(){
     connection.connect();

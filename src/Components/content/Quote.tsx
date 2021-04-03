@@ -2,16 +2,29 @@
 import React, {useEffect, useState} from "react";
 import axios, {AxiosResponse} from "axios";
 
-const Quote: React.FC = () => {
+type QuoteProps = {
+    q?: string;
+}
+
+const Quote: React.FC<QuoteProps> = ({q}) => {
     const [advice, setAdvice] = useState<string>('...');
-    const [loading, setLoading] = useState<boolean>(true);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [disabled, setDisabled] = useState<boolean>(false);
 
     useEffect(() => {
         updateQuote();
     }, [])
 
     function updateQuote() {
+        if (loading || disabled) return
         setLoading(true)
+        if (q) {
+            axios.get('/advice?id={q}').then((response: AxiosResponse) => {
+                setAdvice(response.data)
+                setLoading(false)
+                setDisabled(true)
+            });
+        }
         axios.get('/advice').then((response: AxiosResponse) => {
                 if (response.data === advice) {
                     wait(1000).then(() =>

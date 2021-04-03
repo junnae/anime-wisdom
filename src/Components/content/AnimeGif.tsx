@@ -6,7 +6,11 @@ import axios, {AxiosResponse} from "axios";
 
 const baseUrl = 'https://giphy.com/embed/';
 
-const AnimeGif: React.FC = () => {
+type GifProps = {
+    g?: string;
+}
+
+const AnimeGif: React.FC<GifProps> = ({g}) => {
     const [gifId, setGif] = useState<string>('...');
     const [loading, setLoading] = useState<boolean>(false);
     const [initialized, setInitialized] = useState<boolean>(false);
@@ -16,6 +20,11 @@ const AnimeGif: React.FC = () => {
     }, [])
 
     function updateGif() {
+        if(g){
+            setLoading(false)
+            setGif(g)
+            return
+        }
         if (loading) return
         setLoading(true)
         axios.get('/animegif', {

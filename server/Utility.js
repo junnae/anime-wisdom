@@ -3,7 +3,9 @@ function randomIntFromInterval(min, max) { // min and max included
 }
 
 function weightedChance(length, maxSize) {
-    return randomIntFromInterval(length -1, maxSize ) === maxSize ;
+    if(length > maxSize) length = maxSize
+    let number = randomIntFromInterval(length -1, maxSize );
+    return number === maxSize ;
 }
 
 module.exports = { randomIntFromInterval, weightedChance}

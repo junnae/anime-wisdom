@@ -16,24 +16,24 @@ let quoteCache = new QuoteCache(1000, false)
 //TODO - Basic Error Handling
 app.get('/animegif', function (req, res) {
     let queryId = req.query.id;
-    let fromCache = gifCache.maybeGetFromCache(queryId);
-    if (fromCache !== undefined)
-        return res.send(fromCache)
-    return fetchRandomAnimeGif(gifCache, res, queryId === undefined)
+    gifCache.maybeGetFromCache(queryId, function(gifFromCache){
+        if (gifFromCache !== undefined) return res.send(gifFromCache)
+        else return fetchRandomAnimeGif(gifCache, res, queryId === undefined)
+    });
 });
 
 app.get('/advice', function (req, res) {
     let queryId = req.query.id;
-    if(queryId !== undefined){
-        getQuoteById(queryId, function(err, result){
-            if(err) console.log(err)
-            else if(result !== undefined) return res.send(result)
+    if (queryId !== undefined) {
+        getQuoteById(queryId, function (err, result) {
+            if (err) console.error(err)
+            else if (result !== undefined) return res.send(result)
         });
     }
-    let fromCache = quoteCache.maybeGetFromCache();
-    if (fromCache !== undefined)
-        return res.send(fromCache)
-    return fetchQuote(quoteCache, res);
+    quoteCache.maybeGetFromCache(undefined, function (quoteFromCache) {
+        if (quoteFromCache !== undefined) return res.send(quoteFromCache)
+        else fetchQuote(quoteCache, res);
+    });
 });
 
 
