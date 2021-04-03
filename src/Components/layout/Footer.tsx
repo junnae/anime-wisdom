@@ -4,7 +4,7 @@ import React from "react";
 const Footer: React.FC = () => {
         return (
             <div className={"App-footer"}>
-                <img src={"giphy.gif"} alt={"Powered by giphy"}/>
+                <img src={"/giphy.gif"} alt={"Powered by giphy"}/>
             </div>
         )
 }
