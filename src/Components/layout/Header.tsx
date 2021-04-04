@@ -38,6 +38,7 @@ const Header: React.FC = () => {
     }
 
     function onLeave(){
+        if(isMobile) return
         if(hovering && !copyText){
             setText(wisdom)
         }
@@ -45,6 +46,7 @@ const Header: React.FC = () => {
     }
 
     function onMouseEnter(){
+        if(isMobile) return
         setHovering(true)
         if(!copyText){
             setText(clickToCopy)
