@@ -7,9 +7,9 @@ import { faShareAlt} from "@fortawesome/free-solid-svg-icons";
 
 const Header: React.FC = () => {
 
-    const wisdom = "★☆★ w i s d o m ✧ﾟ";
-    const clickToCopy = "Click to share! "
-    const copied = "Copied link!";
+    const wisdom = "★☆★ w i s d o m ";
+    const clickToCopy = "☆★☆ Click to share "
+    const copied = "★Copied link★";
 
     const [text, setText] = useState<string>(wisdom);
     const [hovering, setHovering] = useState<boolean>(false);

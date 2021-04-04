@@ -2,6 +2,7 @@
 
 .App-header {
   @include header-footer;
+  min-height:calc(10px + 2vmin);
   h1{
     margin: 0;
     font-family: 'Cheri Liney', serif;
