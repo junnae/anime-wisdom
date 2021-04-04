@@ -20,7 +20,7 @@ function App() {
         <div className="App">
             <Header/>
             <MainContent q={q} g={g}/>
-            <Footer/>
+            <Footer g={g} q={q}/>
         </div>
     );
 }
