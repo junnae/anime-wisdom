@@ -28,7 +28,7 @@ jobs:
           npm run test --if-present --quiet
 
       - name: 'Tar files'
-        run: tar -cf advice_moe.tar .
+        run: zip advice_moe.tar .
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
@@ -48,9 +48,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: advice-moe
-
-      - name: Untar
-        run: tar -xf advice_moe.tar
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
