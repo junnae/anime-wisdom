@@ -28,7 +28,7 @@ jobs:
           npm run test --if-present --quiet
 
       - name: 'Tar files'
-        run: tar -cvf advice_moe.tar .
+        run: tar -cf advice_moe.tar .
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
