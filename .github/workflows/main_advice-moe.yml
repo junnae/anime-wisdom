@@ -23,9 +23,9 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+          npm ci
+          npm run build --if-present --quiet
+          npm run test --if-present --quiet
 
       - name: 'Tar files'
         run: tar -cvf advice_moe.tar .
@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: advice-moe
-          path: advice.moe.tar
+          path: advice_moe.tar
 
   deploy:
     runs-on: ubuntu-latest
