@@ -28,13 +28,13 @@ jobs:
           npm run test --if-present --quiet
 
       - name: 'Zip files'
-        run: zip advice_moe.zip .
+        run: zip -r advice_moe.zip .
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
         with:
           name: advice-moe
-          path: advice_moe.tar
+          path: advice_moe.zip
 
   deploy:
     runs-on: ubuntu-latest
