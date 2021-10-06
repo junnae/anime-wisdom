@@ -56,4 +56,4 @@ jobs:
           app-name: 'advice-moe'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B51C71645785451A9A45A0490A5E67F5 }}
-          package: .
+          package: ./advice_moe.zip
