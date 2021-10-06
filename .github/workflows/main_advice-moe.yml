@@ -49,6 +49,9 @@ jobs:
         with:
           name: advice-moe
 
+      - name: Untar
+        run: tar -xf advice_moe.tar
+
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
